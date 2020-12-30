@@ -7,10 +7,10 @@ pipeline {
     stages {
         stage('Build') {
             agent { 
-                dockerfile true { 
-                    image 'golang' 
-                }
-            }
+                docker { 
+                  image 'golang' 
+            } }
+              
             steps {
                 // Create our project directory.
                 sh 'cd ${GOPATH}/src'
@@ -21,10 +21,11 @@ pipeline {
                 sh 'go build'               
             }     
         }
+        
         stage('Test') {
             agent { 
-                dockerfile true { 
-                    image 'golang' 
+                docker { 
+                  image 'golang' 
                 }
             }
             steps {                 
@@ -39,6 +40,7 @@ pipeline {
                 sh 'go test ./... -v -short'            
             }
         }
+        
         stage('Publish') {
             environment {
                 registryCredential = 'dockerhub'
@@ -53,6 +55,7 @@ pipeline {
                 }
             }
         }
+        
         stage ('Deploy') {
             steps {
                 script{
