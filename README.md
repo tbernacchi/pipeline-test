@@ -2,7 +2,7 @@
 <p>
 </p>
 
-> A simple pipeline test using Docker + Ansible + K8s + Jenkins
+> A simple pipeline test with Docker + Ansible + K8s using Jenkins.
 
 ![jenkins](/.github/assets/img/jenkins-pipe.png)
 
